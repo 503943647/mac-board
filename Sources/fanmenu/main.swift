@@ -363,8 +363,6 @@ final class FanMenuApp: NSObject, NSApplicationDelegate, NSMenuDelegate {
     private weak var currentFanPanelView: FanPanelView?
 
     func applicationDidFinishLaunching(_ notification: Notification) {
-        NSApp.setActivationPolicy(.accessory)
-
         if let button = statusItem.button {
             button.image = NSImage(systemSymbolName: "fan", accessibilityDescription: L10n.text(.appName))
             button.imagePosition = .imageLeading
@@ -1753,6 +1751,7 @@ private final class FanSliderView: NSView {
 }
 
 let app = NSApplication.shared
+app.setActivationPolicy(.accessory)
 let delegate = FanMenuApp()
 app.delegate = delegate
 app.run()
