@@ -88,7 +88,7 @@ private enum L10n {
 
     private static let translations: [Language: [Key: String]] = [
         .en: [
-            .appName: "Fan Controller",
+            .appName: "MacBoard",
             .overview: "Overview",
             .memory: "Memory",
             .disk: "Disk",
@@ -113,7 +113,7 @@ private enum L10n {
             .helperReadFailed: "read failed"
         ],
         .zhHans: [
-            .appName: "风扇控制器",
+            .appName: "MacBoard",
             .overview: "概览",
             .memory: "内存",
             .disk: "磁盘",
@@ -138,7 +138,7 @@ private enum L10n {
             .helperReadFailed: "读取失败"
         ],
         .zhHant: [
-            .appName: "風扇控制器",
+            .appName: "MacBoard",
             .overview: "概覽",
             .memory: "記憶體",
             .disk: "磁碟",
@@ -163,7 +163,7 @@ private enum L10n {
             .helperReadFailed: "讀取失敗"
         ],
         .ja: [
-            .appName: "ファンコントローラ",
+            .appName: "MacBoard",
             .overview: "概要",
             .memory: "メモリ",
             .disk: "ディスク",
@@ -188,7 +188,7 @@ private enum L10n {
             .helperReadFailed: "読み取り失敗"
         ],
         .ko: [
-            .appName: "팬 컨트롤러",
+            .appName: "MacBoard",
             .overview: "개요",
             .memory: "메모리",
             .disk: "디스크",
@@ -213,7 +213,7 @@ private enum L10n {
             .helperReadFailed: "읽기 실패"
         ],
         .es: [
-            .appName: "Control de ventilador",
+            .appName: "MacBoard",
             .overview: "Resumen",
             .memory: "Memoria",
             .disk: "Disco",
@@ -238,7 +238,7 @@ private enum L10n {
             .helperReadFailed: "fallo de lectura"
         ],
         .fr: [
-            .appName: "Controle du ventilateur",
+            .appName: "MacBoard",
             .overview: "Apercu",
             .memory: "Memoire",
             .disk: "Disque",
@@ -263,7 +263,7 @@ private enum L10n {
             .helperReadFailed: "echec de lecture"
         ],
         .de: [
-            .appName: "Lueftersteuerung",
+            .appName: "MacBoard",
             .overview: "Uebersicht",
             .memory: "Speicher",
             .disk: "Festplatte",
@@ -288,7 +288,7 @@ private enum L10n {
             .helperReadFailed: "Lesen fehlgeschlagen"
         ],
         .pt: [
-            .appName: "Controle da ventoinha",
+            .appName: "MacBoard",
             .overview: "Visao geral",
             .memory: "Memoria",
             .disk: "Disco",
@@ -313,7 +313,7 @@ private enum L10n {
             .helperReadFailed: "falha de leitura"
         ],
         .ru: [
-            .appName: "Контроллер вентилятора",
+            .appName: "MacBoard",
             .overview: "Обзор",
             .memory: "Память",
             .disk: "Диск",

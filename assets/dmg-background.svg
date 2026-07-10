@@ -24,7 +24,7 @@
   <rect width="660" height="400" fill="url(#purpleGlow)"/>
   <path d="M0 330 C150 276 250 430 414 350 C522 297 578 313 660 286 L660 400 L0 400 Z" fill="#ffffff" fill-opacity="0.035"/>
 
-  <text x="330" y="51" text-anchor="middle" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif" font-size="25" font-weight="700">Fan Controller</text>
+  <text x="330" y="51" text-anchor="middle" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif" font-size="25" font-weight="700">MacBoard</text>
   <text x="330" y="80" text-anchor="middle" fill="#cbd5e1" font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif" font-size="14">拖动到“应用程序”完成安装</text>
 
   <g fill="none" stroke="#7dd3fc" stroke-opacity="0.2" stroke-linecap="round" stroke-linejoin="round">

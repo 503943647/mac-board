@@ -2,7 +2,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "FanController",
+    name: "MacBoard",
     platforms: [
         .macOS(.v13)
     ],

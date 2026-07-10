@@ -3,7 +3,7 @@ set -eu
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 OUTPUT="${1:-$ROOT/.build/visual-assets}"
-ICONSET="$OUTPUT/FanController.iconset"
+ICONSET="$OUTPUT/MacBoard.iconset"
 MASTER_ICON="$OUTPUT/app-icon-1024.png"
 
 rm -rf "$OUTPUT"
@@ -28,7 +28,7 @@ make_icon 512 icon_256x256@2x.png
 make_icon 512 icon_512x512.png
 make_icon 1024 icon_512x512@2x.png
 
-iconutil -c icns "$ICONSET" -o "$OUTPUT/FanController.icns"
+iconutil -c icns "$ICONSET" -o "$OUTPUT/MacBoard.icns"
 sips -s format png "$ROOT/assets/dmg-background.svg" --out "$OUTPUT/dmg-background.png" >/dev/null
 
 echo "$OUTPUT"

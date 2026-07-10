@@ -2,11 +2,11 @@
 set -eu
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-VOLUME_NAME="Fan Controller"
-VERSION="0.1.3"
-FINAL_DMG="$ROOT/dist/Fan-Controller-$VERSION-universal.dmg"
-RW_DMG="$ROOT/dist/.Fan-Controller-$VERSION-rw.dmg"
-STAGE="$(mktemp -d /tmp/fan-controller-stage.XXXXXX)"
+VOLUME_NAME="MacBoard"
+VERSION="0.2.0"
+FINAL_DMG="$ROOT/dist/MacBoard-$VERSION-universal.dmg"
+RW_DMG="$ROOT/dist/.MacBoard-$VERSION-rw.dmg"
+STAGE="$(mktemp -d /tmp/macboard-stage.XXXXXX)"
 MOUNT="/Volumes/$VOLUME_NAME"
 
 cleanup() {
@@ -21,9 +21,9 @@ swift build -c release --arch x86_64 --scratch-path .build-x86_64 --product fanm
 swift build -c release --arch x86_64 --scratch-path .build-x86_64 --product fanctl
 swift build -c release --arch x86_64 --scratch-path .build-x86_64 --product fanhelper
 
-APP="$STAGE/Fan Controller.app"
-cp -R "$ROOT/dist/Fan Controller.app" "$APP"
-lipo -create "$ROOT/.build/release/fanmenu" "$ROOT/.build-x86_64/release/fanmenu" -output "$APP/Contents/MacOS/Fan Controller"
+APP="$STAGE/MacBoard.app"
+cp -R "$ROOT/dist/MacBoard.app" "$APP"
+lipo -create "$ROOT/.build/release/fanmenu" "$ROOT/.build-x86_64/release/fanmenu" -output "$APP/Contents/MacOS/MacBoard"
 lipo -create "$ROOT/.build/release/fanctl" "$ROOT/.build-x86_64/release/fanctl" -output "$APP/Contents/MacOS/fanctl"
 lipo -create "$ROOT/.build/release/fanhelper" "$ROOT/.build-x86_64/release/fanhelper" -output "$APP/Contents/MacOS/fanhelper"
 
@@ -34,7 +34,7 @@ codesign --verify --deep --strict "$APP"
 
 mkdir -p "$STAGE/.background"
 cp "$ROOT/.build/visual-assets/dmg-background.png" "$STAGE/.background/background.png"
-cp "$ROOT/.build/visual-assets/FanController.icns" "$STAGE/.VolumeIcon.icns"
+cp "$ROOT/.build/visual-assets/MacBoard.icns" "$STAGE/.VolumeIcon.icns"
 ln -s /Applications "$STAGE/Applications"
 
 rm -f "$RW_DMG" "$FINAL_DMG"
@@ -60,7 +60,7 @@ tell application "Finder"
     set icon size of viewOptions to 104
     set text size of viewOptions to 14
     set background picture of viewOptions to backgroundFile
-    set position of item "Fan Controller.app" of container window to {160, 215}
+    set position of item "MacBoard.app" of container window to {160, 215}
     set position of item "Applications" of container window to {500, 215}
     update without registering applications
     delay 2
