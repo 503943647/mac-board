@@ -82,3 +82,13 @@ sudo .build/release/fanctl system
 ```
 
 如果 Mac 没有风扇、AppleSMC 阻止访问某个键，或者目标键使用不受支持的数据类型，工具会隐藏对应信息或拒绝操作，而不会猜测硬件参数。
+
+## 随喜打赏
+
+如果你喜欢的话，可以随喜打赏，多少都是心意，一分不嫌少，一亿不嫌多。
+
+<p align="center">
+  <img src="docs/images/alipay-reward.png" alt="支付宝收款码" width="320">
+  &nbsp;&nbsp;
+  <img src="docs/images/wechat-reward.png" alt="微信收款码" width="320">
+</p>
