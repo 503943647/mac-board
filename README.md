@@ -52,6 +52,12 @@ scripts/build-app.sh
 open "dist/Fan Controller.app"
 ```
 
+Build the polished universal DMG with the drag-to-Applications installer layout:
+
+```sh
+scripts/build-dmg.sh
+```
+
 The menu bar app shows CPU load, memory, disk, battery, fan speed/control, and temperature sensors. The first fan-control action installs a root LaunchDaemon helper after one administrator authorization. Later menu actions talk to that helper through `/var/run/fancontroller.sock`, so they do not repeatedly ask for a password.
 
 To remove the helper:

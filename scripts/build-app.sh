@@ -5,6 +5,7 @@ ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 APP="$ROOT/dist/Fan Controller.app"
 CONTENTS="$APP/Contents"
 MACOS="$CONTENTS/MacOS"
+RESOURCES="$CONTENTS/Resources"
 
 cd "$ROOT"
 swift build -c release --product fanmenu
@@ -12,10 +13,12 @@ swift build -c release --product fanctl
 swift build -c release --product fanhelper
 
 rm -rf "$APP"
-mkdir -p "$MACOS"
+mkdir -p "$MACOS" "$RESOURCES"
 cp "$ROOT/.build/release/fanmenu" "$MACOS/Fan Controller"
 cp "$ROOT/.build/release/fanctl" "$MACOS/fanctl"
 cp "$ROOT/.build/release/fanhelper" "$MACOS/fanhelper"
+"$ROOT/scripts/generate-visual-assets.sh" "$ROOT/.build/visual-assets" >/dev/null
+cp "$ROOT/.build/visual-assets/FanController.icns" "$RESOURCES/FanController.icns"
 
 cat > "$CONTENTS/Info.plist" <<'PLIST'
 <?xml version="1.0" encoding="UTF-8"?>
@@ -28,6 +31,8 @@ cat > "$CONTENTS/Info.plist" <<'PLIST'
   <string>local.fan-controller.menu</string>
   <key>CFBundleName</key>
   <string>Fan Controller</string>
+  <key>CFBundleIconFile</key>
+  <string>FanController.icns</string>
   <key>CFBundleDevelopmentRegion</key>
   <string>en</string>
   <key>CFBundleLocalizations</key>
@@ -46,9 +51,9 @@ cat > "$CONTENTS/Info.plist" <<'PLIST'
   <key>CFBundlePackageType</key>
   <string>APPL</string>
   <key>CFBundleShortVersionString</key>
-  <string>0.1.2</string>
+  <string>0.1.3</string>
   <key>CFBundleVersion</key>
-  <string>3</string>
+  <string>4</string>
   <key>LSMinimumSystemVersion</key>
   <string>13.0</string>
   <key>LSUIElement</key>

@@ -52,6 +52,12 @@ scripts/build-app.sh
 open "dist/Fan Controller.app"
 ```
 
+构建带拖拽安装界面的 Intel 与 Apple 芯片通用 DMG：
+
+```sh
+scripts/build-dmg.sh
+```
+
 菜单栏应用可显示 CPU、GPU、内存、磁盘、电池、网络、风扇和温度信息。无法采集的数据会自动隐藏；如果设备没有风扇，则不会显示风扇控制模块。
 
 首次执行风扇控制操作时，应用会在获得一次管理员授权后安装 root LaunchDaemon 辅助服务。后续操作通过 `/var/run/fancontroller.sock` 与该服务通信，不会反复要求输入密码。

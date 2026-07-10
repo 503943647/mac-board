@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#38bdf8"/>
+      <stop offset="0.48" stop-color="#2563eb"/>
+      <stop offset="1" stop-color="#312e81"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.32" cy="0.2" r="0.9">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="24" stdDeviation="28" flood-color="#0f172a" flood-opacity="0.38"/>
+    </filter>
+  </defs>
+
+  <rect x="32" y="32" width="960" height="960" rx="218" fill="url(#background)"/>
+  <rect x="32" y="32" width="960" height="960" rx="218" fill="url(#glow)"/>
+  <rect x="56" y="56" width="912" height="912" rx="194" fill="none" stroke="#ffffff" stroke-opacity="0.18" stroke-width="8"/>
+
+  <g filter="url(#shadow)" fill="#ffffff">
+    <path d="M512 462 C450 430 394 339 421 249 C446 165 547 132 608 193 C670 254 628 384 512 462 Z"/>
+    <path d="M512 462 C450 430 394 339 421 249 C446 165 547 132 608 193 C670 254 628 384 512 462 Z" transform="rotate(72 512 512)"/>
+    <path d="M512 462 C450 430 394 339 421 249 C446 165 547 132 608 193 C670 254 628 384 512 462 Z" transform="rotate(144 512 512)"/>
+    <path d="M512 462 C450 430 394 339 421 249 C446 165 547 132 608 193 C670 254 628 384 512 462 Z" transform="rotate(216 512 512)"/>
+    <path d="M512 462 C450 430 394 339 421 249 C446 165 547 132 608 193 C670 254 628 384 512 462 Z" transform="rotate(288 512 512)"/>
+    <circle cx="512" cy="512" r="112"/>
+  </g>
+  <circle cx="512" cy="512" r="48" fill="#1d4ed8"/>
+  <circle cx="494" cy="492" r="16" fill="#ffffff" fill-opacity="0.42"/>
+</svg>
