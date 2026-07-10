@@ -37,9 +37,6 @@
   </g>
   <text x="328" y="176" text-anchor="middle" fill="#93c5fd" font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif" font-size="12" font-weight="600" letter-spacing="1">拖动安装</text>
 
-  <rect x="87" y="274" width="146" height="38" rx="19" fill="#ffffff" fill-opacity="0.78" stroke="#ffffff" stroke-opacity="0.2"/>
-  <rect x="427" y="274" width="146" height="38" rx="19" fill="#ffffff" fill-opacity="0.78" stroke="#ffffff" stroke-opacity="0.2"/>
-
   <rect x="175" y="326" width="310" height="1" fill="#ffffff" fill-opacity="0.13"/>
   <text x="330" y="354" text-anchor="middle" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif" font-size="11">macOS 13+ · Apple 芯片与 Intel Mac</text>
 </svg>
