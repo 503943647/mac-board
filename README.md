@@ -6,6 +6,12 @@ A small macOS command-line and menu-bar monitoring tool with fan control, temper
 
 It talks to the private AppleSMC service to read fan speed, fan limits, forced fan state, and temperature sensors. Write operations normally require `sudo`.
 
+## Preview
+
+![Fan Controller menu bar overview](docs/images/fan-controller-overview.png)
+
+The compact menu shows available system usage, temperatures, and fan controls. Unsupported or unavailable data is hidden automatically.
+
 ## Build
 
 ```sh

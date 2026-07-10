@@ -6,6 +6,12 @@
 
 它通过私有的 AppleSMC 服务读取风扇转速、转速范围、强制控制状态和温度传感器。写入操作通常需要 `sudo` 权限。
 
+## 界面预览
+
+![Fan Controller 菜单栏界面](docs/images/fan-controller-overview.png)
+
+紧凑的菜单中会显示当前可用的系统占用、温度和风扇控制；不支持或无法采集的数据会自动隐藏。
+
 ## 构建
 
 ```sh
