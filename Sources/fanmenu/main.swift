@@ -703,16 +703,46 @@ final class FanMenuApp: NSObject, NSApplicationDelegate, NSMenuDelegate {
         isRunningHelperCommands = true
 
         let needsAuthorization = (try? helperNeedsInstall()) ?? true
-        guard needsAuthorization, isMenuOpen else {
+        guard needsAuthorization else {
             performHelperCommands(commands)
             return
         }
 
-        // An authorization dialog opened from NSMenu's tracking loop can appear
-        // without accepting keyboard focus. End menu tracking before requesting it.
+        prepareForAuthorization(commands)
+    }
+
+    private func prepareForAuthorization(_ commands: [String]) {
+        // SecurityAgent can display its password dialog without keyboard focus
+        // when it is launched directly from an accessory app's menu tracking loop.
+        // End menu tracking, temporarily make MacBoard a regular foreground app,
+        // and give AppKit a run-loop turn to complete activation first.
         statusItem.menu?.cancelTracking()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
-            self?.performHelperCommands(commands)
+        DispatchQueue.main.async { [weak self] in
+            guard let self else {
+                return
+            }
+
+            let previousActivationPolicy = NSApp.activationPolicy()
+            if previousActivationPolicy != .regular {
+                NSApp.setActivationPolicy(.regular)
+            }
+
+            if #available(macOS 14.0, *) {
+                NSApp.activate()
+            } else {
+                NSApp.activate(ignoringOtherApps: true)
+            }
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+                guard let self else {
+                    return
+                }
+
+                self.performHelperCommands(commands)
+                if previousActivationPolicy != .regular {
+                    NSApp.setActivationPolicy(previousActivationPolicy)
+                }
+            }
         }
     }
 
