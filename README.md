@@ -1,5 +1,7 @@
 # Fan Controller
 
+[English](README.md) | [简体中文](README.zh-CN.md)
+
 A small macOS command-line and menu-bar monitoring tool with fan control, temperature sensors, and a compact system overview.
 
 It talks to the private AppleSMC service to read fan speed, fan limits, forced fan state, and temperature sensors. Write operations normally require `sudo`.
