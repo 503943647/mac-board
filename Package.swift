@@ -26,7 +26,8 @@ let package = Package(
             name: "fanmenu",
             dependencies: ["FanCore"],
             linkerSettings: [
-                .linkedFramework("AppKit")
+                .linkedFramework("AppKit"),
+                .linkedFramework("ServiceManagement")
             ]
         ),
         .executableTarget(

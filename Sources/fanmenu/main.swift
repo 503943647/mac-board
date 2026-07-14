@@ -2,6 +2,7 @@ import AppKit
 import Darwin
 import FanCore
 import Foundation
+import ServiceManagement
 
 private let requiredHelperProtocolVersion = "2026-07-08.2"
 
@@ -18,6 +19,8 @@ private enum L10n {
         case system
         case max
         case speed
+        case launchAtLogin
+        case loginItemRequiresApproval
         case quit
         case noFans
         case errorPrefix
@@ -98,7 +101,9 @@ private enum L10n {
             .fanSpeedControl: "Fan Speed Control",
             .system: "System",
             .max: "Max",
-            .speed: "Speed",
+            .speed: "Current Speed",
+            .launchAtLogin: "Launch at Login",
+            .loginItemRequiresApproval: "Allow in System Settings",
             .quit: "Quit",
             .noFans: "No fans detected",
             .errorPrefix: "Error",
@@ -123,7 +128,9 @@ private enum L10n {
             .fanSpeedControl: "风扇转速控制",
             .system: "系统",
             .max: "最大",
-            .speed: "转速",
+            .speed: "当前转速",
+            .launchAtLogin: "开机自启",
+            .loginItemRequiresApproval: "请在系统设置中允许",
             .quit: "退出",
             .noFans: "未检测到风扇",
             .errorPrefix: "错误",
@@ -148,7 +155,9 @@ private enum L10n {
             .fanSpeedControl: "風扇轉速控制",
             .system: "系統",
             .max: "最大",
-            .speed: "轉速",
+            .speed: "目前轉速",
+            .launchAtLogin: "登入時啟動",
+            .loginItemRequiresApproval: "請在系統設定中允許",
             .quit: "結束",
             .noFans: "未偵測到風扇",
             .errorPrefix: "錯誤",
@@ -173,7 +182,9 @@ private enum L10n {
             .fanSpeedControl: "ファン速度制御",
             .system: "システム",
             .max: "最大",
-            .speed: "速度",
+            .speed: "現在の回転数",
+            .launchAtLogin: "ログイン時に起動",
+            .loginItemRequiresApproval: "システム設定で許可してください",
             .quit: "終了",
             .noFans: "ファンが検出されません",
             .errorPrefix: "エラー",
@@ -198,7 +209,9 @@ private enum L10n {
             .fanSpeedControl: "팬 속도 제어",
             .system: "시스템",
             .max: "최대",
-            .speed: "속도",
+            .speed: "현재 회전 속도",
+            .launchAtLogin: "로그인 시 실행",
+            .loginItemRequiresApproval: "시스템 설정에서 허용하세요",
             .quit: "종료",
             .noFans: "팬을 찾을 수 없음",
             .errorPrefix: "오류",
@@ -223,7 +236,9 @@ private enum L10n {
             .fanSpeedControl: "Control de velocidad",
             .system: "Sistema",
             .max: "Max",
-            .speed: "Velocidad",
+            .speed: "Velocidad actual",
+            .launchAtLogin: "Abrir al iniciar sesión",
+            .loginItemRequiresApproval: "Permitir en Ajustes del Sistema",
             .quit: "Salir",
             .noFans: "No se detectaron ventiladores",
             .errorPrefix: "Error",
@@ -248,7 +263,9 @@ private enum L10n {
             .fanSpeedControl: "Controle de vitesse",
             .system: "Systeme",
             .max: "Max",
-            .speed: "Vitesse",
+            .speed: "Vitesse actuelle",
+            .launchAtLogin: "Ouvrir à la connexion",
+            .loginItemRequiresApproval: "Autoriser dans Réglages Système",
             .quit: "Quitter",
             .noFans: "Aucun ventilateur detecte",
             .errorPrefix: "Erreur",
@@ -273,7 +290,9 @@ private enum L10n {
             .fanSpeedControl: "Luefterdrehzahl",
             .system: "System",
             .max: "Max",
-            .speed: "Drehzahl",
+            .speed: "Aktuelle Drehzahl",
+            .launchAtLogin: "Bei der Anmeldung öffnen",
+            .loginItemRequiresApproval: "In Systemeinstellungen erlauben",
             .quit: "Beenden",
             .noFans: "Keine Luefter erkannt",
             .errorPrefix: "Fehler",
@@ -298,7 +317,9 @@ private enum L10n {
             .fanSpeedControl: "Controle de velocidade",
             .system: "Sistema",
             .max: "Max",
-            .speed: "Velocidade",
+            .speed: "Velocidade atual",
+            .launchAtLogin: "Abrir ao iniciar sessão",
+            .loginItemRequiresApproval: "Permitir nos Ajustes do Sistema",
             .quit: "Sair",
             .noFans: "Nenhuma ventoinha detectada",
             .errorPrefix: "Erro",
@@ -323,7 +344,9 @@ private enum L10n {
             .fanSpeedControl: "Скорость вентилятора",
             .system: "Система",
             .max: "Макс",
-            .speed: "Скорость",
+            .speed: "Текущая скорость",
+            .launchAtLogin: "Открывать при входе",
+            .loginItemRequiresApproval: "Разрешите в Системных настройках",
             .quit: "Выход",
             .noFans: "Вентиляторы не найдены",
             .errorPrefix: "Ошибка",
@@ -361,6 +384,7 @@ final class FanMenuApp: NSObject, NSApplicationDelegate, NSMenuDelegate {
     private var lastFanIntentReapplyAt = Date.distantPast
     private weak var currentOverviewView: SystemOverviewView?
     private weak var currentFanPanelView: FanPanelView?
+    private weak var currentLaunchAtLoginRow: BottomMenuActionRowView?
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         if let button = statusItem.button {
@@ -445,6 +469,7 @@ final class FanMenuApp: NSObject, NSApplicationDelegate, NSMenuDelegate {
         menu.delegate = self
         currentOverviewView = nil
         currentFanPanelView = nil
+        currentLaunchAtLoginRow = nil
 
         if let latestError {
             addView(ErrorRowView(text: menuTitle("\(L10n.text(.errorPrefix)): \(latestError)"), width: menuWidth), to: menu)
@@ -461,8 +486,49 @@ final class FanMenuApp: NSObject, NSApplicationDelegate, NSMenuDelegate {
         }
 
         addView(MenuSeparatorView(width: menuWidth), to: menu)
-        menu.addItem(NSMenuItem(title: L10n.text(.quit), action: #selector(quit), keyEquivalent: "q"))
+        addLaunchAtLoginItem(to: menu)
+        addQuitItem(to: menu)
         statusItem.menu = menu
+    }
+
+    private func addQuitItem(to menu: NSMenu) {
+        let row = BottomMenuActionRowView(
+            title: L10n.text(.quit),
+            accessory: .shortcut("⌘Q"),
+            width: menuWidth,
+            onAction: { [weak self] in self?.quit() }
+        )
+        let quitItem = addView(row, to: menu)
+        quitItem.action = #selector(quit)
+        quitItem.target = self
+        quitItem.keyEquivalent = "q"
+    }
+
+    private func addLaunchAtLoginItem(to menu: NSMenu) {
+        let service = SMAppService.mainApp
+        var title = L10n.text(.launchAtLogin)
+        if service.status == .requiresApproval {
+            title += " — \(L10n.text(.loginItemRequiresApproval))"
+        }
+
+        let row = BottomMenuActionRowView(
+            title: title,
+            accessory: .checkmark(isVisible: service.status == .enabled),
+            width: menuWidth,
+            closesMenuOnAction: false,
+            onAction: { [weak self] in self?.toggleLaunchAtLogin() }
+        )
+        currentLaunchAtLoginRow = row
+        addView(row, to: menu)
+    }
+
+    private func updateLaunchAtLoginRow() {
+        let service = SMAppService.mainApp
+        var title = L10n.text(.launchAtLogin)
+        if service.status == .requiresApproval {
+            title += " — \(L10n.text(.loginItemRequiresApproval))"
+        }
+        currentLaunchAtLoginRow?.updateCheckmark(title: title, isVisible: service.status == .enabled)
     }
 
     private func updateOpenMenuViews() {
@@ -470,6 +536,7 @@ final class FanMenuApp: NSObject, NSApplicationDelegate, NSMenuDelegate {
             currentOverviewView?.update(snapshot: latestSystem, temperatures: groupedTemperatureRows(latestTemperatures))
         }
         currentFanPanelView?.update(fans: latestFans, pendingTargetRPM: activePendingFanTarget(), pendingMode: currentFanModeForDisplay())
+        updateLaunchAtLoginRow()
     }
 
     private func addFanPanel(to menu: NSMenu) {
@@ -546,10 +613,12 @@ final class FanMenuApp: NSObject, NSApplicationDelegate, NSMenuDelegate {
         return "Other"
     }
 
-    private func addView(_ view: NSView, to menu: NSMenu) {
+    @discardableResult
+    private func addView(_ view: NSView, to menu: NSMenu) -> NSMenuItem {
         let item = NSMenuItem()
         item.view = view
         menu.addItem(item)
+        return item
     }
 
     @objc private func refreshFromTimer() {
@@ -912,6 +981,34 @@ final class FanMenuApp: NSObject, NSApplicationDelegate, NSMenuDelegate {
 
     private func appleScriptQuoted(_ value: String) -> String {
         "\"" + value.replacingOccurrences(of: "\\", with: "\\\\").replacingOccurrences(of: "\"", with: "\\\"") + "\""
+    }
+
+    private func toggleLaunchAtLogin() {
+        let service = SMAppService.mainApp
+        do {
+            switch service.status {
+            case .enabled:
+                try service.unregister()
+            case .requiresApproval:
+                SMAppService.openSystemSettingsLoginItems()
+            case .notRegistered, .notFound:
+                try service.register()
+                if service.status == .requiresApproval {
+                    SMAppService.openSystemSettingsLoginItems()
+                }
+            @unknown default:
+                try service.register()
+            }
+        } catch {
+            if service.status == .requiresApproval {
+                SMAppService.openSystemSettingsLoginItems()
+            } else {
+                let alert = NSAlert(error: error)
+                alert.messageText = L10n.text(.launchAtLogin)
+                alert.runModal()
+            }
+        }
+        updateLaunchAtLoginRow()
     }
 
     @objc private func quit() {
@@ -1628,6 +1725,141 @@ private final class MenuSeparatorView: NSView {
 
     required init?(coder: NSCoder) {
         nil
+    }
+}
+
+@MainActor
+private final class BottomMenuActionRowView: NSView {
+    enum Accessory {
+        case checkmark(isVisible: Bool)
+        case shortcut(String)
+    }
+
+    private let onAction: () -> Void
+    private let closesMenuOnAction: Bool
+    private let titleLabel = NSTextField(labelWithString: "")
+    private let checkmarkView = NSImageView()
+    private let shortcutLabel = NSTextField(labelWithString: "")
+    private var hoverTrackingArea: NSTrackingArea?
+    private var isHovered = false
+
+    override var isFlipped: Bool {
+        true
+    }
+
+    init(
+        title: String,
+        accessory: Accessory,
+        width: Int,
+        closesMenuOnAction: Bool = true,
+        onAction: @escaping () -> Void
+    ) {
+        self.onAction = onAction
+        self.closesMenuOnAction = closesMenuOnAction
+        super.init(frame: NSRect(x: 0, y: 0, width: width, height: 28))
+
+        titleLabel.stringValue = title
+        titleLabel.font = .systemFont(ofSize: 14, weight: .regular)
+        titleLabel.textColor = .labelColor
+        titleLabel.lineBreakMode = .byTruncatingTail
+        titleLabel.frame = NSRect(x: 20, y: 4, width: width - 64, height: 20)
+        addSubview(titleLabel)
+
+        checkmarkView.image = NSImage(systemSymbolName: "checkmark", accessibilityDescription: nil)
+        checkmarkView.contentTintColor = .labelColor
+        checkmarkView.imageScaling = .scaleProportionallyDown
+        checkmarkView.frame = NSRect(x: width - 36, y: 6, width: 16, height: 16)
+        addSubview(checkmarkView)
+
+        shortcutLabel.font = .systemFont(ofSize: 13, weight: .regular)
+        shortcutLabel.textColor = .secondaryLabelColor
+        shortcutLabel.alignment = .right
+        shortcutLabel.frame = NSRect(x: width - 64, y: 4, width: 44, height: 20)
+        addSubview(shortcutLabel)
+
+        switch accessory {
+        case .checkmark(let isVisible):
+            titleLabel.frame.size.width = CGFloat(width - 64)
+            checkmarkView.isHidden = !isVisible
+            shortcutLabel.isHidden = true
+            setAccessibilityRole(.checkBox)
+            setAccessibilityValue(isVisible)
+        case .shortcut(let shortcut):
+            titleLabel.frame.size.width = CGFloat(width - 92)
+            checkmarkView.isHidden = true
+            shortcutLabel.stringValue = shortcut
+            setAccessibilityRole(.button)
+        }
+        setAccessibilityLabel(title)
+    }
+
+    required init?(coder: NSCoder) {
+        nil
+    }
+
+    func updateCheckmark(title: String, isVisible: Bool) {
+        titleLabel.stringValue = title
+        checkmarkView.isHidden = !isVisible
+        setAccessibilityLabel(title)
+        setAccessibilityValue(isVisible)
+    }
+
+    override func updateTrackingAreas() {
+        super.updateTrackingAreas()
+        if let hoverTrackingArea {
+            removeTrackingArea(hoverTrackingArea)
+        }
+        let trackingArea = NSTrackingArea(
+            rect: bounds,
+            options: [.mouseEnteredAndExited, .activeAlways],
+            owner: self,
+            userInfo: nil
+        )
+        addTrackingArea(trackingArea)
+        hoverTrackingArea = trackingArea
+    }
+
+    override func mouseEntered(with event: NSEvent) {
+        isHovered = true
+        titleLabel.textColor = .alternateSelectedControlTextColor
+        checkmarkView.contentTintColor = .alternateSelectedControlTextColor
+        shortcutLabel.textColor = .alternateSelectedControlTextColor
+        needsDisplay = true
+    }
+
+    override func mouseExited(with event: NSEvent) {
+        isHovered = false
+        titleLabel.textColor = .labelColor
+        checkmarkView.contentTintColor = .labelColor
+        shortcutLabel.textColor = .secondaryLabelColor
+        needsDisplay = true
+    }
+
+    override func hitTest(_ point: NSPoint) -> NSView? {
+        bounds.contains(point) ? self : nil
+    }
+
+    override func mouseDown(with event: NSEvent) {
+        guard bounds.contains(convert(event.locationInWindow, from: nil)) else {
+            return
+        }
+        if closesMenuOnAction {
+            enclosingMenuItem?.menu?.cancelTracking()
+            DispatchQueue.main.async { [onAction] in
+                onAction()
+            }
+        } else {
+            onAction()
+        }
+    }
+
+    override func draw(_ dirtyRect: NSRect) {
+        super.draw(dirtyRect)
+        guard isHovered else {
+            return
+        }
+        NSColor.selectedContentBackgroundColor.setFill()
+        bounds.fill()
     }
 }
 

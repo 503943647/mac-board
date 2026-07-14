@@ -51,9 +51,9 @@ cat > "$CONTENTS/Info.plist" <<'PLIST'
   <key>CFBundlePackageType</key>
   <string>APPL</string>
   <key>CFBundleShortVersionString</key>
-  <string>0.2.1</string>
+  <string>0.2.2</string>
   <key>CFBundleVersion</key>
-  <string>6</string>
+  <string>7</string>
   <key>LSMinimumSystemVersion</key>
   <string>13.0</string>
   <key>NSPrincipalClass</key>
@@ -61,5 +61,10 @@ cat > "$CONTENTS/Info.plist" <<'PLIST'
 </dict>
 </plist>
 PLIST
+
+codesign --force --sign - --timestamp=none "$MACOS/fanctl"
+codesign --force --sign - --timestamp=none "$MACOS/fanhelper"
+codesign --force --sign - --timestamp=none "$APP"
+codesign --verify --deep --strict "$APP"
 
 echo "$APP"
