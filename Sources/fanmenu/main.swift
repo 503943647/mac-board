@@ -15,6 +15,24 @@ private enum L10n {
         case battery
         case charging
         case network
+        case back
+        case device
+        case renderer
+        case tiler
+        case used
+        case active
+        case wired
+        case compressed
+        case inactive
+        case download
+        case upload
+        case received
+        case sent
+        case usageDetails
+        case applicationUsage
+        case loading
+        case noApplicationData
+        case systemAndOther
         case fanSpeedControl
         case system
         case max
@@ -50,6 +68,31 @@ private enum L10n {
 
     static func text(_ key: Key) -> String {
         translations[language]?[key] ?? translations[.en]?[key] ?? ""
+    }
+
+    static func coreCount(_ count: Int) -> String {
+        switch language {
+        case .en:
+            return "\(count)-core"
+        case .zhHans:
+            return "\(count) 核"
+        case .zhHant:
+            return "\(count) 核心"
+        case .ja:
+            return "\(count)コア"
+        case .ko:
+            return "\(count)코어"
+        case .es:
+            return "\(count) núcleos"
+        case .fr:
+            return "\(count) cœurs"
+        case .de:
+            return "\(count) Kerne"
+        case .pt:
+            return "\(count) núcleos"
+        case .ru:
+            return "\(count) ядер"
+        }
     }
 
     private static let language: Language = {
@@ -98,6 +141,24 @@ private enum L10n {
             .battery: "Battery",
             .charging: "Charging",
             .network: "Network",
+            .back: "Back",
+            .device: "Device",
+            .renderer: "Renderer",
+            .tiler: "Tiler",
+            .used: "Used",
+            .active: "Active",
+            .wired: "Wired",
+            .compressed: "Compressed",
+            .inactive: "Inactive",
+            .download: "Download",
+            .upload: "Upload",
+            .received: "Received",
+            .sent: "Sent",
+            .usageDetails: "Usage",
+            .applicationUsage: "Apps",
+            .loading: "Loading...",
+            .noApplicationData: "No application data available",
+            .systemAndOther: "System & Other",
             .fanSpeedControl: "Fan Speed Control",
             .system: "System",
             .max: "Max",
@@ -125,6 +186,24 @@ private enum L10n {
             .battery: "电池",
             .charging: "充电中",
             .network: "网络",
+            .back: "返回",
+            .device: "设备",
+            .renderer: "渲染器",
+            .tiler: "铺砖器",
+            .used: "已使用",
+            .active: "活跃内存",
+            .wired: "联动内存",
+            .compressed: "压缩内存",
+            .inactive: "非活跃内存",
+            .download: "下载速度",
+            .upload: "上传速度",
+            .received: "已接收",
+            .sent: "已发送",
+            .usageDetails: "当前使用",
+            .applicationUsage: "应用占用",
+            .loading: "正在加载…",
+            .noApplicationData: "暂无可用的应用占用数据",
+            .systemAndOther: "系统与其他",
             .fanSpeedControl: "风扇转速控制",
             .system: "系统",
             .max: "最大",
@@ -152,6 +231,24 @@ private enum L10n {
             .battery: "電池",
             .charging: "充電中",
             .network: "網路",
+            .back: "返回",
+            .device: "裝置",
+            .renderer: "渲染器",
+            .tiler: "鋪磚器",
+            .used: "已使用",
+            .active: "活躍記憶體",
+            .wired: "聯動記憶體",
+            .compressed: "壓縮記憶體",
+            .inactive: "非活躍記憶體",
+            .download: "下載速度",
+            .upload: "上傳速度",
+            .received: "已接收",
+            .sent: "已傳送",
+            .usageDetails: "目前使用",
+            .applicationUsage: "App 佔用",
+            .loading: "正在載入…",
+            .noApplicationData: "暫無可用的 App 佔用資料",
+            .systemAndOther: "系統與其他",
             .fanSpeedControl: "風扇轉速控制",
             .system: "系統",
             .max: "最大",
@@ -179,6 +276,24 @@ private enum L10n {
             .battery: "バッテリー",
             .charging: "充電中",
             .network: "ネットワーク",
+            .back: "戻る",
+            .device: "デバイス",
+            .renderer: "レンダラー",
+            .tiler: "タイラー",
+            .used: "使用中",
+            .active: "アクティブ",
+            .wired: "固定",
+            .compressed: "圧縮",
+            .inactive: "非アクティブ",
+            .download: "ダウンロード",
+            .upload: "アップロード",
+            .received: "受信済み",
+            .sent: "送信済み",
+            .usageDetails: "現在の使用状況",
+            .applicationUsage: "アプリ使用量",
+            .loading: "読み込み中…",
+            .noApplicationData: "アプリ使用量データがありません",
+            .systemAndOther: "システムとその他",
             .fanSpeedControl: "ファン速度制御",
             .system: "システム",
             .max: "最大",
@@ -206,6 +321,24 @@ private enum L10n {
             .battery: "배터리",
             .charging: "충전 중",
             .network: "네트워크",
+            .back: "뒤로",
+            .device: "기기",
+            .renderer: "렌더러",
+            .tiler: "타일러",
+            .used: "사용됨",
+            .active: "활성",
+            .wired: "고정",
+            .compressed: "압축됨",
+            .inactive: "비활성",
+            .download: "다운로드",
+            .upload: "업로드",
+            .received: "받음",
+            .sent: "보냄",
+            .usageDetails: "현재 사용량",
+            .applicationUsage: "앱 사용량",
+            .loading: "불러오는 중…",
+            .noApplicationData: "사용 가능한 앱 데이터가 없습니다",
+            .systemAndOther: "시스템 및 기타",
             .fanSpeedControl: "팬 속도 제어",
             .system: "시스템",
             .max: "최대",
@@ -233,6 +366,24 @@ private enum L10n {
             .battery: "Bateria",
             .charging: "Cargando",
             .network: "Red",
+            .back: "Atrás",
+            .device: "Dispositivo",
+            .renderer: "Renderizador",
+            .tiler: "Mosaico",
+            .used: "Usada",
+            .active: "Activa",
+            .wired: "Cableada",
+            .compressed: "Comprimida",
+            .inactive: "Inactiva",
+            .download: "Descarga",
+            .upload: "Subida",
+            .received: "Recibido",
+            .sent: "Enviado",
+            .usageDetails: "Uso actual",
+            .applicationUsage: "Aplicaciones",
+            .loading: "Cargando…",
+            .noApplicationData: "No hay datos de aplicaciones",
+            .systemAndOther: "Sistema y otros",
             .fanSpeedControl: "Control de velocidad",
             .system: "Sistema",
             .max: "Max",
@@ -260,6 +411,24 @@ private enum L10n {
             .battery: "Batterie",
             .charging: "En charge",
             .network: "Reseau",
+            .back: "Retour",
+            .device: "Appareil",
+            .renderer: "Moteur de rendu",
+            .tiler: "Tuilage",
+            .used: "Utilisée",
+            .active: "Active",
+            .wired: "Câblée",
+            .compressed: "Compressée",
+            .inactive: "Inactive",
+            .download: "Téléchargement",
+            .upload: "Envoi",
+            .received: "Reçu",
+            .sent: "Envoyé",
+            .usageDetails: "Utilisation",
+            .applicationUsage: "Applications",
+            .loading: "Chargement…",
+            .noApplicationData: "Aucune donnée d’application disponible",
+            .systemAndOther: "Système et autres",
             .fanSpeedControl: "Controle de vitesse",
             .system: "Systeme",
             .max: "Max",
@@ -287,6 +456,24 @@ private enum L10n {
             .battery: "Batterie",
             .charging: "Laedt",
             .network: "Netzwerk",
+            .back: "Zurück",
+            .device: "Gerät",
+            .renderer: "Renderer",
+            .tiler: "Tiler",
+            .used: "Verwendet",
+            .active: "Aktiv",
+            .wired: "Gebunden",
+            .compressed: "Komprimiert",
+            .inactive: "Inaktiv",
+            .download: "Download",
+            .upload: "Upload",
+            .received: "Empfangen",
+            .sent: "Gesendet",
+            .usageDetails: "Aktuelle Nutzung",
+            .applicationUsage: "Apps",
+            .loading: "Wird geladen…",
+            .noApplicationData: "Keine App-Nutzungsdaten verfügbar",
+            .systemAndOther: "System und Sonstiges",
             .fanSpeedControl: "Luefterdrehzahl",
             .system: "System",
             .max: "Max",
@@ -314,6 +501,24 @@ private enum L10n {
             .battery: "Bateria",
             .charging: "Carregando",
             .network: "Rede",
+            .back: "Voltar",
+            .device: "Dispositivo",
+            .renderer: "Renderizador",
+            .tiler: "Mosaico",
+            .used: "Usada",
+            .active: "Ativa",
+            .wired: "Vinculada",
+            .compressed: "Comprimida",
+            .inactive: "Inativa",
+            .download: "Download",
+            .upload: "Upload",
+            .received: "Recebido",
+            .sent: "Enviado",
+            .usageDetails: "Uso atual",
+            .applicationUsage: "Aplicativos",
+            .loading: "Carregando…",
+            .noApplicationData: "Nenhum dado de aplicativo disponível",
+            .systemAndOther: "Sistema e outros",
             .fanSpeedControl: "Controle de velocidade",
             .system: "Sistema",
             .max: "Max",
@@ -341,6 +546,24 @@ private enum L10n {
             .battery: "Батарея",
             .charging: "Заряжается",
             .network: "Сеть",
+            .back: "Назад",
+            .device: "Устройство",
+            .renderer: "Рендерер",
+            .tiler: "Тайлер",
+            .used: "Используется",
+            .active: "Активная",
+            .wired: "Связанная",
+            .compressed: "Сжатая",
+            .inactive: "Неактивная",
+            .download: "Загрузка",
+            .upload: "Отправка",
+            .received: "Получено",
+            .sent: "Отправлено",
+            .usageDetails: "Текущее использование",
+            .applicationUsage: "Приложения",
+            .loading: "Загрузка…",
+            .noApplicationData: "Нет данных об использовании приложений",
+            .systemAndOther: "Система и прочее",
             .fanSpeedControl: "Скорость вентилятора",
             .system: "Система",
             .max: "Макс",
@@ -363,6 +586,13 @@ private enum L10n {
     ]
 }
 
+private enum OverviewDetailKind: Sendable {
+    case cpu
+    case gpu
+    case memory
+    case network
+}
+
 @MainActor
 final class FanMenuApp: NSObject, NSApplicationDelegate, NSMenuDelegate {
     private let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
@@ -382,7 +612,9 @@ final class FanMenuApp: NSObject, NSApplicationDelegate, NSMenuDelegate {
     private var isRunningHelperCommands = false
     private var isReapplyingFanIntent = false
     private var lastFanIntentReapplyAt = Date.distantPast
-    private weak var currentOverviewView: SystemOverviewView?
+    private var currentOverviewView: SystemOverviewView?
+    private weak var currentOverviewItem: NSMenuItem?
+    private weak var currentOverviewDetailView: OverviewDetailView?
     private weak var currentFanPanelView: FanPanelView?
     private weak var currentLaunchAtLoginRow: BottomMenuActionRowView?
 
@@ -467,7 +699,10 @@ final class FanMenuApp: NSObject, NSApplicationDelegate, NSMenuDelegate {
     private func rebuildMenu() {
         let menu = NSMenu()
         menu.delegate = self
+        currentOverviewDetailView?.stopUpdates()
         currentOverviewView = nil
+        currentOverviewItem = nil
+        currentOverviewDetailView = nil
         currentFanPanelView = nil
         currentLaunchAtLoginRow = nil
 
@@ -534,6 +769,7 @@ final class FanMenuApp: NSObject, NSApplicationDelegate, NSMenuDelegate {
     private func updateOpenMenuViews() {
         if let latestSystem {
             currentOverviewView?.update(snapshot: latestSystem, temperatures: groupedTemperatureRows(latestTemperatures))
+            currentOverviewDetailView?.update(snapshot: latestSystem)
         }
         currentFanPanelView?.update(fans: latestFans, pendingTargetRPM: activePendingFanTarget(), pendingMode: currentFanModeForDisplay())
         updateLaunchAtLoginRow()
@@ -554,9 +790,61 @@ final class FanMenuApp: NSObject, NSApplicationDelegate, NSMenuDelegate {
     }
 
     private func addSystemOverview(_ snapshot: SystemSnapshot, temperatures: [(name: String, celsius: Double)], to menu: NSMenu) {
-        let view = SystemOverviewView(snapshot: snapshot, temperatures: temperatures, width: menuWidth)
+        let view = SystemOverviewView(
+            snapshot: snapshot,
+            temperatures: temperatures,
+            width: menuWidth,
+            onOpenDetail: { [weak self] kind in self?.showOverviewDetail(kind) }
+        )
         currentOverviewView = view
-        addView(view, to: menu)
+        currentOverviewItem = addView(view, to: menu)
+    }
+
+    private func showOverviewDetail(_ kind: OverviewDetailKind) {
+        guard let menu = statusItem.menu,
+              let item = currentOverviewItem,
+              let snapshot = latestSystem else {
+            return
+        }
+
+        DispatchQueue.main.async { [weak self, weak menu, weak item] in
+            guard let self, let menu, let item else {
+                return
+            }
+            let detailView = OverviewDetailView(
+                kind: kind,
+                snapshot: snapshot,
+                width: self.menuWidth,
+                onBack: { [weak self] in self?.hideOverviewDetail() }
+            )
+            self.currentOverviewDetailView = detailView
+            item.view = detailView
+            for menuItem in menu.items where menuItem !== item {
+                menuItem.isHidden = true
+            }
+            detailView.animateEntrance(fromTrailingEdge: true)
+        }
+    }
+
+    private func hideOverviewDetail() {
+        guard let menu = statusItem.menu,
+              let item = currentOverviewItem,
+              let overviewView = currentOverviewView else {
+            return
+        }
+
+        DispatchQueue.main.async { [weak self, weak menu, weak item, weak overviewView] in
+            guard let self, let menu, let item, let overviewView else {
+                return
+            }
+            self.currentOverviewDetailView?.stopUpdates()
+            item.view = overviewView
+            for menuItem in menu.items {
+                menuItem.isHidden = false
+            }
+            self.currentOverviewDetailView = nil
+            overviewView.animateEntrance(fromTrailingEdge: false)
+        }
     }
 
     private func groupedTemperatureRows(_ readings: [TemperatureReading]) -> [(name: String, celsius: Double)] {
@@ -1068,18 +1356,33 @@ private final class SystemOverviewView: NSView {
         true
     }
 
-    init(snapshot: SystemSnapshot, temperatures: [(name: String, celsius: Double)], width: Int) {
+    init(
+        snapshot: SystemSnapshot,
+        temperatures: [(name: String, celsius: Double)],
+        width: Int,
+        onOpenDetail: @escaping (OverviewDetailKind) -> Void
+    ) {
         super.init(frame: NSRect(x: 0, y: 0, width: CGFloat(width), height: Self.preferredHeight(for: snapshot)))
-        setup(snapshot: snapshot, temperatures: temperatures, width: width)
+        setup(snapshot: snapshot, temperatures: temperatures, width: width, onOpenDetail: onOpenDetail)
     }
 
     required init?(coder: NSCoder) {
         nil
     }
 
-    private func setup(snapshot: SystemSnapshot, temperatures: [(name: String, celsius: Double)], width: Int) {
+    private func setup(
+        snapshot: SystemSnapshot,
+        temperatures: [(name: String, celsius: Double)],
+        width: Int,
+        onOpenDetail: @escaping (OverviewDetailKind) -> Void
+    ) {
         let temp = temperatureMap(temperatures)
-        let header = SectionHeaderView(title: L10n.text(.overview), systemImage: "gauge.with.dots.needle.67percent", width: width)
+        let header = SectionHeaderView(
+            title: L10n.text(.overview),
+            systemImage: "gauge.with.dots.needle.67percent",
+            trailingText: snapshot.processorModel,
+            width: width
+        )
         header.frame = NSRect(x: 0, y: 10, width: width, height: 30)
         addSubview(header)
 
@@ -1087,8 +1390,9 @@ private final class SystemOverviewView: NSView {
             MetricTileView(
                 title: "CPU",
                 value: "\(Int((cpuLoad * 100).rounded()))%",
-                detail: temp["CPU"].map { "\(Int($0.rounded()))℃" },
-                progress: cpuLoad
+                detail: hardwareDetail(coreCount: snapshot.cpuCoreCount, temperature: temp["CPU"]),
+                progress: cpuLoad,
+                onTitleClick: { onOpenDetail(.cpu) }
             )
         }
         let memory = snapshot.memoryPercent.flatMap { memoryPercent -> MetricTileView? in
@@ -1099,15 +1403,17 @@ private final class SystemOverviewView: NSView {
                 title: L10n.text(.memory),
                 value: "\(Int((memoryPercent * 100).rounded()))%",
                 detail: "\(formatBytes(memoryUsed)) / \(formatBytes(memoryTotal))",
-                progress: memoryPercent
+                progress: memoryPercent,
+                onTitleClick: { onOpenDetail(.memory) }
             )
         }
         let gpu = snapshot.gpuLoad.map {
             MetricTileView(
                 title: "GPU",
                 value: "\(Int(($0 * 100).rounded()))%",
-                detail: temp["GPU"].map { "\(Int($0.rounded()))℃" },
-                progress: $0
+                detail: hardwareDetail(coreCount: snapshot.gpuCoreCount, temperature: temp["GPU"]),
+                progress: $0,
+                onTitleClick: { onOpenDetail(.gpu) }
             )
         }
         let disk = snapshot.diskPercent.flatMap { diskPercent -> MetricTileView? in
@@ -1137,7 +1443,8 @@ private final class SystemOverviewView: NSView {
                 title: L10n.text(.network),
                 value: "",
                 detail: networkDetail(down: down, up: up),
-                progress: networkProgress(down: down, up: up)
+                progress: networkProgress(down: down, up: up),
+                onTitleClick: { onOpenDetail(.network) }
             )
         }
 
@@ -1164,13 +1471,34 @@ private final class SystemOverviewView: NSView {
         networkTile = network
     }
 
+    func animateEntrance(fromTrailingEdge: Bool) {
+        wantsLayer = true
+        guard let layer else {
+            return
+        }
+        let fade = CABasicAnimation(keyPath: "opacity")
+        fade.fromValue = 0
+        fade.toValue = 1
+        fade.duration = 0.2
+        fade.timingFunction = CAMediaTimingFunction(name: .easeOut)
+
+        let slide = CABasicAnimation(keyPath: "transform.translation.x")
+        slide.fromValue = fromTrailingEdge ? 18 : -18
+        slide.toValue = 0
+        slide.duration = 0.24
+        slide.timingFunction = CAMediaTimingFunction(name: .easeOut)
+
+        layer.add(fade, forKey: "overviewFadeIn")
+        layer.add(slide, forKey: "overviewSlideIn")
+    }
+
     func update(snapshot: SystemSnapshot, temperatures: [(name: String, celsius: Double)]) {
         let temp = temperatureMap(temperatures)
         if let cpuLoad = snapshot.cpuLoad {
             cpuTile?.isHidden = false
             cpuTile?.update(
                 value: "\(Int((cpuLoad * 100).rounded()))%",
-                detail: temp["CPU"].map { "\(Int($0.rounded()))℃" },
+                detail: hardwareDetail(coreCount: snapshot.cpuCoreCount, temperature: temp["CPU"]),
                 progress: cpuLoad
             )
         } else {
@@ -1180,7 +1508,7 @@ private final class SystemOverviewView: NSView {
             gpuTile?.isHidden = false
             gpuTile?.update(
                 value: "\(Int((gpuLoad * 100).rounded()))%",
-                detail: temp["GPU"].map { "\(Int($0.rounded()))℃" },
+                detail: hardwareDetail(coreCount: snapshot.gpuCoreCount, temperature: temp["GPU"]),
                 progress: gpuLoad
             )
         } else {
@@ -1246,6 +1574,14 @@ private final class SystemOverviewView: NSView {
         ])
     }
 
+    private func hardwareDetail(coreCount: Int?, temperature: Double?) -> String? {
+        let detail = joinedDetail([
+            coreCount.map(L10n.coreCount),
+            temperature.map { "\(Int($0.rounded()))℃" }
+        ])
+        return detail.isEmpty ? nil : detail
+    }
+
     private func networkValues(_ snapshot: SystemSnapshot) -> (down: Double, up: Double)? {
         guard let down = snapshot.networkDownBytesPerSecond,
               let up = snapshot.networkUpBytesPerSecond else {
@@ -1281,24 +1617,520 @@ private final class SystemOverviewView: NSView {
     }
 }
 
+private struct DetailMetricModel {
+    let id: String
+    let title: String
+    let value: String
+    let progress: Double?
+}
+
 @MainActor
-private final class MetricTileView: NSView {
-    private let title: String
-    private var value: String
-    private var detail: String?
-    private var progress: Double
+private final class OverviewDetailView: NSView {
+    private let kind: OverviewDetailKind
+    private let width: Int
+    private let rowsContainer = FlippedView()
+    private let scrollView = NSScrollView()
+    private let pageControl = NSSegmentedControl(
+        labels: [L10n.text(.applicationUsage), L10n.text(.usageDetails)],
+        trackingMode: .selectOne,
+        target: nil,
+        action: nil
+    )
+    private var rowViews: [DetailMetricRowView] = []
+    private var latestSnapshot: SystemSnapshot
+    private var applicationRefreshTimer: Timer?
+    private var isLoadingApplications = false
+    private var applicationRequestID = 0
+
+    private static let visibleRowCount = 8
 
     override var isFlipped: Bool {
         true
     }
 
-    init(title: String, value: String, detail: String? = nil, progress: Double) {
+    init(kind: OverviewDetailKind, snapshot: SystemSnapshot, width: Int, onBack: @escaping () -> Void) {
+        self.kind = kind
+        self.width = width
+        latestSnapshot = snapshot
+        let rows = [DetailMetricModel(id: "loading", title: L10n.text(.loading), value: "", progress: nil)]
+        super.init(frame: NSRect(
+            x: 0,
+            y: 0,
+            width: width,
+            height: 88 + Self.visibleRowCount * 30 + 12
+        ))
+        wantsLayer = true
+
+        let header = DetailPageHeaderView(title: Self.title(for: kind), width: width, onBack: onBack)
+        header.frame = NSRect(x: 0, y: 8, width: width, height: 38)
+        addSubview(header)
+
+        pageControl.frame = NSRect(x: 40, y: 50, width: width - 80, height: 28)
+        pageControl.segmentStyle = .rounded
+        pageControl.font = .systemFont(ofSize: 11, weight: .medium)
+        pageControl.setWidth(CGFloat(width - 80) / 2, forSegment: 0)
+        pageControl.setWidth(CGFloat(width - 80) / 2, forSegment: 1)
+        pageControl.selectedSegment = 0
+        pageControl.target = self
+        pageControl.action = #selector(pageChanged(_:))
+        addSubview(pageControl)
+
+        scrollView.frame = NSRect(x: 0, y: 84, width: width, height: Self.visibleRowCount * 30 + 6)
+        scrollView.drawsBackground = false
+        scrollView.borderType = .noBorder
+        scrollView.hasVerticalScroller = rows.count > Self.visibleRowCount
+        scrollView.autohidesScrollers = true
+        rowsContainer.frame = NSRect(x: 0, y: 0, width: width, height: max(1, rows.count) * 30)
+        scrollView.documentView = rowsContainer
+        addSubview(scrollView)
+
+        apply(rows)
+        startApplicationRefresh()
+    }
+
+    required init?(coder: NSCoder) {
+        nil
+    }
+
+    func update(snapshot: SystemSnapshot) {
+        latestSnapshot = snapshot
+        if pageControl.selectedSegment == 1 {
+            apply(Self.metrics(for: kind, snapshot: snapshot))
+        }
+    }
+
+    func stopUpdates() {
+        applicationRequestID += 1
+        isLoadingApplications = false
+        stopApplicationRefresh()
+    }
+
+    func animateEntrance(fromTrailingEdge: Bool) {
+        guard let layer else {
+            return
+        }
+        let fade = CABasicAnimation(keyPath: "opacity")
+        fade.fromValue = 0
+        fade.toValue = 1
+        fade.duration = 0.2
+        fade.timingFunction = CAMediaTimingFunction(name: .easeOut)
+
+        let slide = CABasicAnimation(keyPath: "transform.translation.x")
+        slide.fromValue = fromTrailingEdge ? 18 : -18
+        slide.toValue = 0
+        slide.duration = 0.24
+        slide.timingFunction = CAMediaTimingFunction(name: .easeOut)
+
+        layer.add(fade, forKey: "detailFadeIn")
+        layer.add(slide, forKey: "detailSlideIn")
+    }
+
+    private func apply(_ rows: [DetailMetricModel]) {
+        scrollView.hasVerticalScroller = rows.count > Self.visibleRowCount
+        let needsRebuild = rowViews.count != rows.count || zip(rowViews, rows).contains { $0.metricID != $1.id }
+        if needsRebuild {
+            rowViews.forEach { $0.removeFromSuperview() }
+            rowViews = rows.enumerated().map { index, model in
+                let row = DetailMetricRowView(model: model)
+                row.frame = NSRect(x: 0, y: index * 30, width: width, height: 30)
+                rowsContainer.addSubview(row)
+                return row
+            }
+            rowsContainer.frame.size.height = CGFloat(max(1, rows.count) * 30)
+        } else {
+            zip(rowViews, rows).forEach { $0.update(model: $1) }
+        }
+    }
+
+    @objc private func pageChanged(_ sender: NSSegmentedControl) {
+        applicationRequestID += 1
+        isLoadingApplications = false
+        if sender.selectedSegment == 1 {
+            stopApplicationRefresh()
+            apply(Self.metrics(for: kind, snapshot: latestSnapshot))
+            animateRows(fromTrailingEdge: true)
+        } else {
+            apply([DetailMetricModel(id: "loading", title: L10n.text(.loading), value: "", progress: nil)])
+            animateRows(fromTrailingEdge: false)
+            startApplicationRefresh()
+        }
+    }
+
+    private func startApplicationRefresh() {
+        stopApplicationRefresh()
+        refreshApplicationUsage()
+        let timer = Timer(timeInterval: 1, repeats: true) { [weak self] _ in
+            Task { @MainActor [weak self] in
+                self?.refreshApplicationUsage()
+            }
+        }
+        timer.tolerance = 0.2
+        RunLoop.main.add(timer, forMode: .common)
+        applicationRefreshTimer = timer
+    }
+
+    private func stopApplicationRefresh() {
+        applicationRefreshTimer?.invalidate()
+        applicationRefreshTimer = nil
+    }
+
+    private func refreshApplicationUsage() {
+        guard pageControl.selectedSegment == 0, !isLoadingApplications else {
+            return
+        }
+        isLoadingApplications = true
+        applicationRequestID += 1
+        let requestID = applicationRequestID
+        let metric = applicationMetric
+
+        Task.detached(priority: .utility) {
+            let sample = ApplicationUsageMonitor.sample(metric)
+            await MainActor.run { [weak self] in
+                guard let self, self.applicationRequestID == requestID else {
+                    return
+                }
+                self.isLoadingApplications = false
+                guard self.pageControl.selectedSegment == 0 else {
+                    return
+                }
+                guard sample.isReady else {
+                    self.apply([DetailMetricModel(
+                        id: "loading",
+                        title: L10n.text(.loading),
+                        value: "",
+                        progress: nil
+                    )])
+                    return
+                }
+                let rows = self.applicationMetrics(sample)
+                self.apply(rows.isEmpty ? [DetailMetricModel(
+                    id: "no-application-data",
+                    title: L10n.text(.noApplicationData),
+                    value: "",
+                    progress: nil
+                )] : rows)
+            }
+        }
+    }
+
+    private var applicationMetric: ApplicationUsageMetric {
+        switch kind {
+        case .cpu:
+            return .cpu
+        case .gpu:
+            return .gpu
+        case .memory:
+            return .memory
+        case .network:
+            return .network
+        }
+    }
+
+    private func applicationMetrics(_ sample: ApplicationUsageSample) -> [DetailMetricModel] {
+        var rows = sample.entries.map { entry in
+            let value: String
+            let progress: Double?
+            switch kind {
+            case .cpu:
+                value = Self.applicationPercent(entry.value, capsAt100Percent: true)
+                progress = min(1, max(0, entry.value))
+            case .gpu:
+                value = Self.applicationPercent(entry.value, capsAt100Percent: true)
+                progress = min(1, max(0, entry.value))
+            case .memory:
+                value = formatBytes(UInt64(max(0, entry.value)))
+                progress = latestSnapshot.memoryTotal.flatMap { total in
+                    total > 0 ? min(1, entry.value / Double(total)) : nil
+                }
+            case .network:
+                let up = entry.auxiliaryValue ?? 0
+                value = "↓ \(formatRate(entry.value))  ↑ \(formatRate(up))"
+                progress = min(1, max(0, (entry.value + up) / (10 * 1024 * 1024)))
+            }
+            return DetailMetricModel(
+                id: "application-\(entry.id)",
+                title: entry.name,
+                value: value,
+                progress: progress
+            )
+        }
+
+        if kind == .cpu, let totalValue = sample.totalValue {
+            let attributedValue = sample.entries.reduce(0) { $0 + $1.value }
+            let unattributedValue = max(0, totalValue - attributedValue)
+            if unattributedValue > 0.0001 {
+                rows.append(DetailMetricModel(
+                    id: "application-system-and-other",
+                    title: L10n.text(.systemAndOther),
+                    value: Self.applicationPercent(unattributedValue, capsAt100Percent: true),
+                    progress: min(1, unattributedValue)
+                ))
+                rows.sort { ($0.progress ?? 0) > ($1.progress ?? 0) }
+            }
+        }
+        return rows
+    }
+
+    private func animateRows(fromTrailingEdge: Bool) {
+        rowsContainer.wantsLayer = true
+        guard let layer = rowsContainer.layer else {
+            return
+        }
+        let fade = CABasicAnimation(keyPath: "opacity")
+        fade.fromValue = 0
+        fade.toValue = 1
+        fade.duration = 0.16
+        let slide = CABasicAnimation(keyPath: "transform.translation.x")
+        slide.fromValue = fromTrailingEdge ? 12 : -12
+        slide.toValue = 0
+        slide.duration = 0.2
+        slide.timingFunction = CAMediaTimingFunction(name: .easeOut)
+        layer.add(fade, forKey: "pageFadeIn")
+        layer.add(slide, forKey: "pageSlideIn")
+    }
+
+    private static func title(for kind: OverviewDetailKind) -> String {
+        switch kind {
+        case .cpu:
+            return "CPU"
+        case .gpu:
+            return "GPU"
+        case .memory:
+            return L10n.text(.memory)
+        case .network:
+            return L10n.text(.network)
+        }
+    }
+
+    private static func metrics(for kind: OverviewDetailKind, snapshot: SystemSnapshot) -> [DetailMetricModel] {
+        switch kind {
+        case .cpu:
+            return (snapshot.cpuCoreLoads ?? []).enumerated().map { index, load in
+                DetailMetricModel(
+                    id: "cpu-\(index)",
+                    title: "CPU \(index + 1)",
+                    value: percent(load),
+                    progress: load
+                )
+            }
+        case .gpu:
+            return compactMetrics([
+                metric(id: "gpu-device", title: L10n.text(.device), progress: snapshot.gpuDeviceLoad),
+                metric(id: "gpu-renderer", title: L10n.text(.renderer), progress: snapshot.gpuRendererLoad),
+                metric(id: "gpu-tiler", title: L10n.text(.tiler), progress: snapshot.gpuTilerLoad)
+            ])
+        case .memory:
+            guard let total = snapshot.memoryTotal, total > 0 else {
+                return []
+            }
+            return compactMetrics([
+                byteMetric(id: "memory-used", title: L10n.text(.used), bytes: snapshot.memoryUsed, total: total),
+                byteMetric(id: "memory-active", title: L10n.text(.active), bytes: snapshot.memoryActive, total: total),
+                byteMetric(id: "memory-wired", title: L10n.text(.wired), bytes: snapshot.memoryWired, total: total),
+                byteMetric(id: "memory-compressed", title: L10n.text(.compressed), bytes: snapshot.memoryCompressed, total: total),
+                byteMetric(id: "memory-inactive", title: L10n.text(.inactive), bytes: snapshot.memoryInactive, total: total)
+            ])
+        case .network:
+            return compactMetrics([
+                rateMetric(id: "network-download", title: L10n.text(.download), rate: snapshot.networkDownBytesPerSecond),
+                rateMetric(id: "network-upload", title: L10n.text(.upload), rate: snapshot.networkUpBytesPerSecond),
+                totalMetric(id: "network-received", title: L10n.text(.received), bytes: snapshot.networkReceivedBytes),
+                totalMetric(id: "network-sent", title: L10n.text(.sent), bytes: snapshot.networkSentBytes)
+            ])
+        }
+    }
+
+    private static func compactMetrics(_ values: [DetailMetricModel?]) -> [DetailMetricModel] {
+        values.compactMap { $0 }
+    }
+
+    private static func metric(id: String, title: String, progress: Double?) -> DetailMetricModel? {
+        progress.map { DetailMetricModel(id: id, title: title, value: percent($0), progress: $0) }
+    }
+
+    private static func byteMetric(id: String, title: String, bytes: UInt64?, total: UInt64) -> DetailMetricModel? {
+        bytes.map {
+            DetailMetricModel(
+                id: id,
+                title: title,
+                value: formatBytes($0),
+                progress: min(1, Double($0) / Double(total))
+            )
+        }
+    }
+
+    private static func rateMetric(id: String, title: String, rate: Double?) -> DetailMetricModel? {
+        rate.map {
+            DetailMetricModel(
+                id: id,
+                title: title,
+                value: formatRate($0),
+                progress: min(1, max(0, $0 / (10 * 1024 * 1024)))
+            )
+        }
+    }
+
+    private static func totalMetric(id: String, title: String, bytes: UInt64?) -> DetailMetricModel? {
+        bytes.map { DetailMetricModel(id: id, title: title, value: formatBytes($0), progress: nil) }
+    }
+
+    private static func percent(_ value: Double) -> String {
+        "\(Int((min(1, max(0, value)) * 100).rounded()))%"
+    }
+
+    private static func applicationPercent(_ value: Double, capsAt100Percent: Bool) -> String {
+        let rawPercentage = max(0, value * 100)
+        let percentage = capsAt100Percent ? min(100, rawPercentage) : rawPercentage
+        if percentage >= 10 {
+            return String(format: "%.0f%%", percentage)
+        }
+        if percentage >= 1 {
+            return String(format: "%.1f%%", percentage)
+        }
+        if percentage > 0 {
+            return String(format: "%.2f%%", percentage)
+        }
+        return "0%"
+    }
+}
+
+@MainActor
+private final class DetailPageHeaderView: NSView {
+    private let onBack: () -> Void
+
+    init(title: String, width: Int, onBack: @escaping () -> Void) {
+        self.onBack = onBack
+        super.init(frame: NSRect(x: 0, y: 0, width: width, height: 38))
+
+        let backButton = NSButton(title: L10n.text(.back), target: self, action: #selector(backPressed))
+        backButton.image = NSImage(systemSymbolName: "chevron.left", accessibilityDescription: L10n.text(.back))
+        backButton.imagePosition = .imageLeading
+        backButton.bezelStyle = .inline
+        backButton.isBordered = false
+        backButton.font = .systemFont(ofSize: 12, weight: .medium)
+        backButton.contentTintColor = .secondaryLabelColor
+        backButton.frame = NSRect(x: 14, y: 6, width: 74, height: 26)
+        addSubview(backButton)
+
+        let titleLabel = NSTextField(labelWithString: title)
+        titleLabel.font = .systemFont(ofSize: 15, weight: .bold)
+        titleLabel.textColor = .labelColor
+        titleLabel.alignment = .center
+        titleLabel.frame = NSRect(x: 88, y: 7, width: width - 176, height: 24)
+        addSubview(titleLabel)
+    }
+
+    required init?(coder: NSCoder) {
+        nil
+    }
+
+    @objc private func backPressed() {
+        onBack()
+    }
+}
+
+@MainActor
+private final class DetailMetricRowView: NSView {
+    let metricID: String
+    private var title: String
+    private var value: String
+    private var progress: Double?
+
+    override var isFlipped: Bool {
+        true
+    }
+
+    init(model: DetailMetricModel) {
+        metricID = model.id
+        title = model.title
+        value = model.value
+        progress = model.progress
+        super.init(frame: .zero)
+    }
+
+    required init?(coder: NSCoder) {
+        nil
+    }
+
+    func update(model: DetailMetricModel) {
+        title = model.title
+        value = model.value
+        progress = model.progress
+        needsDisplay = true
+    }
+
+    override func draw(_ dirtyRect: NSRect) {
+        super.draw(dirtyRect)
+
+        let titleParagraph = NSMutableParagraphStyle()
+        titleParagraph.lineBreakMode = .byTruncatingTail
+        let titleAttributes: [NSAttributedString.Key: Any] = [
+            .font: NSFont.systemFont(ofSize: 11, weight: .medium),
+            .foregroundColor: NSColor.labelColor.withAlphaComponent(0.9),
+            .paragraphStyle: titleParagraph
+        ]
+        let valueAttributes: [NSAttributedString.Key: Any] = [
+            .font: NSFont.monospacedDigitSystemFont(ofSize: 11, weight: .semibold),
+            .foregroundColor: NSColor.secondaryLabelColor
+        ]
+        let valueSize = value.size(withAttributes: valueAttributes)
+        let titleWidth = max(40, bounds.width - 52 - valueSize.width)
+        title.draw(
+            in: NSRect(x: 20, y: 1, width: titleWidth, height: 17),
+            withAttributes: titleAttributes
+        )
+        value.draw(at: NSPoint(x: bounds.width - 20 - valueSize.width, y: 1), withAttributes: valueAttributes)
+
+        guard let progress else {
+            return
+        }
+        let track = NSRect(x: 20, y: 22, width: bounds.width - 40, height: 3)
+        NSColor.separatorColor.withAlphaComponent(0.4).setFill()
+        NSBezierPath(roundedRect: track, xRadius: 1.5, yRadius: 1.5).fill()
+        let fill = NSRect(x: track.minX, y: track.minY, width: track.width * min(1, max(0, progress)), height: track.height)
+        NSColor.controlAccentColor.withAlphaComponent(0.9).setFill()
+        NSBezierPath(roundedRect: fill, xRadius: 1.5, yRadius: 1.5).fill()
+    }
+}
+
+private final class FlippedView: NSView {
+    override var isFlipped: Bool {
+        true
+    }
+}
+
+@MainActor
+private final class MetricTileView: NSView {
+    private let title: String
+    private let onTitleClick: (() -> Void)?
+    private var value: String
+    private var detail: String?
+    private var progress: Double
+    private var hoverTrackingArea: NSTrackingArea?
+    private var isTitleHovered = false
+
+    override var isFlipped: Bool {
+        true
+    }
+
+    init(
+        title: String,
+        value: String,
+        detail: String? = nil,
+        progress: Double,
+        onTitleClick: (() -> Void)? = nil
+    ) {
         self.title = title
+        self.onTitleClick = onTitleClick
         self.value = value
         self.detail = detail
         self.progress = max(0, min(1, progress))
         super.init(frame: .zero)
         wantsLayer = true
+        if onTitleClick != nil {
+            setAccessibilityRole(.button)
+            setAccessibilityLabel(title)
+        }
     }
 
     required init?(coder: NSCoder) {
@@ -1312,12 +2144,62 @@ private final class MetricTileView: NSView {
         needsDisplay = true
     }
 
+    override func updateTrackingAreas() {
+        super.updateTrackingAreas()
+        if let hoverTrackingArea {
+            removeTrackingArea(hoverTrackingArea)
+        }
+        guard onTitleClick != nil else {
+            hoverTrackingArea = nil
+            return
+        }
+        let trackingArea = NSTrackingArea(
+            rect: titleHitRect,
+            options: [.activeAlways, .mouseEnteredAndExited, .cursorUpdate],
+            owner: self,
+            userInfo: nil
+        )
+        addTrackingArea(trackingArea)
+        hoverTrackingArea = trackingArea
+    }
+
+    override func mouseEntered(with event: NSEvent) {
+        isTitleHovered = true
+        needsDisplay = true
+    }
+
+    override func mouseExited(with event: NSEvent) {
+        isTitleHovered = false
+        needsDisplay = true
+    }
+
+    override func cursorUpdate(with event: NSEvent) {
+        onTitleClick == nil ? NSCursor.arrow.set() : NSCursor.pointingHand.set()
+    }
+
+    override func mouseDown(with event: NSEvent) {
+        guard let onTitleClick,
+              titleHitRect.contains(convert(event.locationInWindow, from: nil)) else {
+            super.mouseDown(with: event)
+            return
+        }
+        onTitleClick()
+    }
+
+    private var titleHitRect: NSRect {
+        let attributes: [NSAttributedString.Key: Any] = [
+            .font: NSFont.systemFont(ofSize: 11, weight: .semibold)
+        ]
+        let width = title.size(withAttributes: attributes).width + (onTitleClick == nil ? 8 : 24)
+        return NSRect(x: 0, y: 0, width: width, height: 20)
+    }
+
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
 
         let titleAttributes: [NSAttributedString.Key: Any] = [
             .font: NSFont.systemFont(ofSize: 11, weight: .semibold),
-            .foregroundColor: NSColor.secondaryLabelColor
+            .foregroundColor: isTitleHovered ? NSColor.controlAccentColor : NSColor.labelColor.withAlphaComponent(0.88)
         ]
         let valueAttributes: [NSAttributedString.Key: Any] = [
             .font: NSFont.monospacedDigitSystemFont(ofSize: 13, weight: .bold),
@@ -1325,10 +2207,21 @@ private final class MetricTileView: NSView {
         ]
         let detailAttributes: [NSAttributedString.Key: Any] = [
             .font: NSFont.systemFont(ofSize: 9, weight: .regular),
-            .foregroundColor: NSColor.tertiaryLabelColor
+            .foregroundColor: NSColor.secondaryLabelColor
         ]
 
-        title.draw(at: NSPoint(x: 0, y: 0), withAttributes: titleAttributes)
+        let titleY: CGFloat = onTitleClick == nil ? 0 : 1
+        title.draw(at: NSPoint(x: 0, y: titleY), withAttributes: titleAttributes)
+        if onTitleClick != nil {
+            let titleSize = title.size(withAttributes: titleAttributes)
+            let disclosureAttributes: [NSAttributedString.Key: Any] = [
+                .font: NSFont.systemFont(ofSize: 15, weight: .semibold),
+                .foregroundColor: isTitleHovered ? NSColor.controlAccentColor : NSColor.secondaryLabelColor
+            ]
+            let disclosureSize = "›".size(withAttributes: disclosureAttributes)
+            let disclosureY = (titleSize.height - disclosureSize.height) / 2
+            "›".draw(at: NSPoint(x: titleSize.width + 5, y: disclosureY), withAttributes: disclosureAttributes)
+        }
         let valueSize = value.size(withAttributes: valueAttributes)
         value.draw(at: NSPoint(x: bounds.width - valueSize.width, y: 0), withAttributes: valueAttributes)
 
@@ -1638,7 +2531,7 @@ private final class CommitSlider: NSSlider {
 
 @MainActor
 private final class SectionHeaderView: NSView {
-    init(title: String, systemImage: String, width: Int) {
+    init(title: String, systemImage: String, trailingText: String? = nil, width: Int) {
         super.init(frame: NSRect(x: 0, y: 0, width: width, height: 34))
 
         let icon = NSImageView()
@@ -1654,16 +2547,38 @@ private final class SectionHeaderView: NSView {
         addSubview(icon)
         addSubview(label)
 
-        NSLayoutConstraint.activate([
+        var constraints = [
             icon.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 18),
             icon.centerYAnchor.constraint(equalTo: centerYAnchor),
             icon.widthAnchor.constraint(equalToConstant: 18),
             icon.heightAnchor.constraint(equalToConstant: 18),
 
             label.leadingAnchor.constraint(equalTo: icon.trailingAnchor, constant: 8),
-            label.centerYAnchor.constraint(equalTo: centerYAnchor),
-            label.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor, constant: -18)
-        ])
+            label.centerYAnchor.constraint(equalTo: centerYAnchor)
+        ]
+
+        if let trailingText, !trailingText.isEmpty {
+            let trailingLabel = NSTextField(labelWithString: trailingText)
+            trailingLabel.font = .systemFont(ofSize: 10, weight: .medium)
+            trailingLabel.textColor = .secondaryLabelColor
+            trailingLabel.alignment = .right
+            trailingLabel.lineBreakMode = .byTruncatingMiddle
+            trailingLabel.translatesAutoresizingMaskIntoConstraints = false
+            trailingLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+            label.setContentCompressionResistancePriority(.required, for: .horizontal)
+            addSubview(trailingLabel)
+
+            constraints.append(contentsOf: [
+                label.trailingAnchor.constraint(lessThanOrEqualTo: trailingLabel.leadingAnchor, constant: -8),
+                trailingLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+                trailingLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -18),
+                trailingLabel.widthAnchor.constraint(lessThanOrEqualToConstant: 150)
+            ])
+        } else {
+            constraints.append(label.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor, constant: -18))
+        }
+
+        NSLayoutConstraint.activate(constraints)
     }
 
     required init?(coder: NSCoder) {

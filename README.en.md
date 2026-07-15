@@ -71,6 +71,8 @@ sudo rm -f /var/run/fancontroller.sock
 
 ## Safety
 
+The source code is fully public. The author guarantees that it contains no backdoors, hidden data collection, remote-control functionality, or other intentionally introduced security risks.
+
 This uses private, undocumented macOS hardware interfaces. The readable sensors and writable keys vary by Mac model and macOS version. Do not run manual fan speeds outside the reported range, and use `system` to return control to macOS after testing:
 
 ```sh

@@ -3,7 +3,7 @@ set -eu
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 VOLUME_NAME="MacBoard"
-VERSION="0.2.2"
+VERSION="0.2.3"
 FINAL_DMG="$ROOT/dist/MacBoard-$VERSION-universal.dmg"
 RW_DMG="$ROOT/dist/.MacBoard-$VERSION-rw.dmg"
 STAGE="$(mktemp -d /tmp/macboard-stage.XXXXXX)"
